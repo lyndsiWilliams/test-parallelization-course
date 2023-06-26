@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       test-chunks: ${{ steps.set-test-chunks.outputs.TEST_CHUNKS }}
-      test-chunks-ids: ${{ steps.set-test-chunks-ids.outputs.TEST_CHUNK_IDS }}
+      test-chunks-ids: ${{ steps.set-test-chunks-ids.outputs.TEST_CHUNKS_IDS }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
