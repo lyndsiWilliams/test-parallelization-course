@@ -29,12 +29,12 @@ jobs:
       fail-fast: false
       matrix:
         chunk: ${{ fromJson(needs.TestsSetup.outputs.test-chunks-ids }}
-      steps:
-        - uses: actions/checkout@v3
-        - uses: actions/setup-node@v3
-          with:
-            node-version: "latest"
-        - run: npm ci
-        - run: echo $TEST_CHUNKS | jq '.[${{ matrix.chunk }}] | .[] | @text' | xargs npm test
-          env:
-            TEST_CHUNKS: ${{ needs.TestsSetup.outputs.test-chunks }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "latest"
+      - run: npm ci
+      - run: echo $TEST_CHUNKS | jq '.[${{ matrix.chunk }}] | .[] | @text' | xargs npm test
+        env:
+          TEST_CHUNKS: ${{ needs.TestsSetup.outputs.test-chunks }}
