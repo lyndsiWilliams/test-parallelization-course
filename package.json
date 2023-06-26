@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/lyndsiWilliams/test-parallelization-course#readme",
   "devDependencies": {
+    "@types/jest": "^29.5.2",
     "jest": "^29.5.0"
   }
 }
