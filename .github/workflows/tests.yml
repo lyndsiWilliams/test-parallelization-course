@@ -14,7 +14,7 @@ jobs:
       - run: npm ci
       - id: set-test-chunks
         name: Set Chunks
-        run: echo "TEST_CHUNKS=$(npx jest --listTests --json | jq -c '.[]' | gshuf | jq -s '.' | jq -c '[_nwise(length / 2 | floor)]')" >> $GITHUB_OUTPUT
+        run: echo "TEST_CHUNKS=$(npx jest --listTests --json | jq -c '.[]' | shuf | jq -s '.' | jq -c '[_nwise(length / 2 | floor)]')" >> $GITHUB_OUTPUT
       - id: set-test-chunks-ids
         name: Set Chunks IDs
         run: echo "TEST_CHUNKS_IDS=$(echo $TEST_CHUNKS | jq -c 'to_entries | map(.key)')" >> "$GITHUB_OUTPUT"
@@ -28,7 +28,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        chunk: ${{ fromJson(needs.TestsSetup.outputs.test-chunks-ids }}
+        chunk: ${{ fromJson(needs.TestsSetup.outputs.test-chunks-ids) }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
